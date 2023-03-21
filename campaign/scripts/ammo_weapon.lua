@@ -7,7 +7,7 @@ function hasLoadAction(nodeWeapon)
 	--	luacheck: globals type
 	local bRanged = (type.getValue() == 1)
 	local sWeaponName = string.lower(DB.getValue(nodeWeapon, 'name', 'ranged weapon'))
-	for _, v in pairs(AmmunitionManager.tLoadWeapons) do
+	for _, v in pairs(AmmunitionManagerSFRPG.tLoadWeapons) do
 		if string.find(sWeaponName, v) then
 			bHasLoadAction = true
 			break
@@ -15,7 +15,7 @@ function hasLoadAction(nodeWeapon)
 	end
 
 	local sWeaponProps = string.lower(DB.getValue(nodeWeapon, 'properties', ''))
-	for _, v in pairs(AmmunitionManager.tLoadWeaponProps) do
+	for _, v in pairs(AmmunitionManagerSFRPG.tLoadWeaponProps) do
 		if bHasLoadAction then
 			break
 		elseif string.find(sWeaponProps, v) then
@@ -50,9 +50,9 @@ function onDataChanged()
 	super.onDamageChanged()
 
 	local nodeWeapon = getDatabaseNode()
-	local nodeAmmoLink = AmmunitionManager.getAmmoNode(nodeWeapon)
+	local nodeAmmoLink = AmmunitionManagerSFRPG.getAmmoNode(nodeWeapon)
 	local rActor = ActorManager.resolveActor(DB.getChild(nodeWeapon, '...'))
-	local _, bInfiniteAmmo = AmmunitionManager.getAmmoRemaining(rActor, nodeWeapon, nodeAmmoLink)
+	local _, bInfiniteAmmo = AmmunitionManagerSFRPG.getAmmoRemaining(rActor, nodeWeapon, nodeAmmoLink)
 
 	--	luacheck: globals type
 	local bRanged = (type.getValue() == 1)

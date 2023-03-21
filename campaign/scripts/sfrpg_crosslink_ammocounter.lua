@@ -23,7 +23,7 @@ function onValueChanged()
 	bLocked = true
 
 	local currentAmmo = DB.getValue(sLink, 'number', 0)
-	local usage = AmmunitionManager.getWeaponUsage(window.getDatabaseNode())
+	local usage = AmmunitionManagerSFRPG.getWeaponUsage(window.getDatabaseNode())
 	local excess = math.fmod(currentAmmo, usage)
 	DB.setValue(sLink, 'number', math.min(excess + (getMaxValue() - getCurrentValue()) * usage, getMaxValue() * usage))
 
@@ -35,7 +35,7 @@ function onLinkUpdated()
 
 	bLocked = true
 
-	setCurrentValue(getMaxValue() - math.floor(DB.getValue(sLink, 0) / AmmunitionManager.getWeaponUsage(window.getDatabaseNode())))
+	setCurrentValue(getMaxValue() - math.floor(DB.getValue(sLink, 0) / AmmunitionManagerSFRPG.getWeaponUsage(window.getDatabaseNode())))
 
 	if self.update then self.update() end
 

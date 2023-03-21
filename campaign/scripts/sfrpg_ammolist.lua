@@ -5,7 +5,7 @@
 -- luacheck: globals getAmmoType onFilter onInit
 
 function getAmmoType(itemNode)
-	local _, ammoType = AmmunitionManager.parseWeaponCapacity(DB.getValue(itemNode, 'capacity', ''))
+	local _, ammoType = AmmunitionManagerSFRPG.parseWeaponCapacity(DB.getValue(itemNode, 'capacity', ''))
 	if ammoType:find('grenade') then return 'Grenade' end
 	return 'Ammunition'
 end
@@ -14,7 +14,7 @@ local attackNode, itemNode, ammoSubtype
 
 function onInit()
 	attackNode = window.parentcontrol.window.getDatabaseNode()
-	itemNode = AmmunitionManager.getShortcutNode(attackNode)
+	itemNode = AmmunitionManagerSFRPG.getShortcutNode(attackNode)
 	ammoSubtype = getAmmoType(itemNode)
 end
 

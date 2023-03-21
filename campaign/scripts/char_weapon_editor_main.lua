@@ -18,7 +18,7 @@ function onDataChanged()
 	label_missedshots.setVisible(bRanged)
 	recoverammo.setVisible(bRanged)
 
-	local nodeAmmoLink = AmmunitionManager.getAmmoNode(nodeWeapon)
+	local nodeAmmoLink = AmmunitionManagerSFRPG.getAmmoNode(nodeWeapon)
 	if nodeAmmoLink then
 		local nodeAmmoMisses = DB.getChild(nodeAmmoLink, 'missedshots')
 		if not nodeAmmoMisses then

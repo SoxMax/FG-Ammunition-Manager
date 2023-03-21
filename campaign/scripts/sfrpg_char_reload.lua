@@ -17,8 +17,8 @@ local function getContainedItems(nodeContainer)
 end
 
 local function loadCartridges(weaponActionNode, newAmmoNode, loadedAmmoNode)
-	local weaponInventoryNode = AmmunitionManager.getShortcutNode(weaponActionNode, 'shortcut')
-	local maxAmmo, _ = AmmunitionManager.parseWeaponCapacity(DB.getValue(weaponInventoryNode, 'capacity', ''))
+	local weaponInventoryNode = AmmunitionManagerSFRPG.getShortcutNode(weaponActionNode, 'shortcut')
+	local maxAmmo, _ = AmmunitionManagerSFRPG.parseWeaponCapacity(DB.getValue(weaponInventoryNode, 'capacity', ''))
 	local currentAmmoCount = 0
 	if loadedAmmoNode then
 		currentAmmoCount = DB.getValue(loadedAmmoNode, 'count', 0)
@@ -42,14 +42,14 @@ local function unloadAmmunition(loadedAmmoNode)
 end
 
 local function moveInventoryAmmunition(weaponActionNode, newAmmoNode)
-	local weaponInventoryNode = AmmunitionManager.getShortcutNode(weaponActionNode, 'shortcut')
+	local weaponInventoryNode = AmmunitionManagerSFRPG.getShortcutNode(weaponActionNode, 'shortcut')
 	local loadedAmmoNode = getContainedItems(weaponInventoryNode)[1]
 	if not newAmmoNode then -- no new ammo, unload old
 		unloadAmmunition(loadedAmmoNode)
 		return newAmmoNode
 	end
 
-	local _, ammoType = AmmunitionManager.parseWeaponCapacity(DB.getValue(weaponInventoryNode, 'capacity', ''))
+	local _, ammoType = AmmunitionManagerSFRPG.parseWeaponCapacity(DB.getValue(weaponInventoryNode, 'capacity', ''))
 	if ammoType == 'drawn' then return newAmmoNode end
 
 	if ammoType == 'charges' then

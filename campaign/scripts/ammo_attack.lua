@@ -10,7 +10,7 @@ function action(draginfo)
 	rAttack.order = tonumber(string.sub(getName(), 7)) or 1
 
 	local nodeWeapon = window.getDatabaseNode()
-	local nAmmo, bInfiniteAmmo = AmmunitionManager.getAmmoRemaining(rActor, nodeWeapon, AmmunitionManager.getAmmoNode(nodeWeapon))
+	local nAmmo, bInfiniteAmmo = AmmunitionManagerSFRPG.getAmmoRemaining(rActor, nodeWeapon, AmmunitionManagerSFRPG.getAmmoNode(nodeWeapon))
 
 	if window.automateAmmo(window.getDatabaseNode()) then return end
 

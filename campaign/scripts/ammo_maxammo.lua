@@ -7,7 +7,7 @@ function onDoubleClick(x, y, ...)
 	if super and super.onDoubleClick then super.onDoubleClick(x, y, ...) end
 
 	local nodeWeapon = window.getDatabaseNode()
-	local nodeAmmo = AmmunitionManager.getAmmoNode(nodeWeapon)
+	local nodeAmmo = AmmunitionManagerSFRPG.getAmmoNode(nodeWeapon)
 
 	if nodeAmmo then
 		local nCount = DB.getValue(nodeAmmo, count[1], 0)

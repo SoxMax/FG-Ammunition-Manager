@@ -8,7 +8,7 @@ function hasLoadAction()
 	local nodeWeapon = getDatabaseNode()
 	local sWeaponProperties = string.lower(DB.getValue(nodeWeapon, 'properties', ''))
 	local sWeaponName = string.lower(DB.getValue(nodeWeapon, 'name', 'ranged weapon'))
-	for _, v in pairs(AmmunitionManager.tLoadWeapons) do
+	for _, v in pairs(AmmunitionManagerSFRPG.tLoadWeapons) do
 		if string.find(sWeaponName, v) then
 			bHasLoadAction = true
 			break
@@ -28,8 +28,8 @@ function toggleDetail()
 	isloaded.setVisible(bRanged and hasLoadAction())
 
 	local rActor = ActorManager.resolveActor(DB.getChild(nodeWeapon, '...'))
-	local nodeAmmoLink = AmmunitionManager.getAmmoNode(nodeWeapon)
-	local _, bInfiniteAmmo = AmmunitionManager.getAmmoRemaining(rActor, nodeWeapon, nodeAmmoLink)
+	local nodeAmmoLink = AmmunitionManagerSFRPG.getAmmoNode(nodeWeapon)
+	local _, bInfiniteAmmo = AmmunitionManagerSFRPG.getAmmoRemaining(rActor, nodeWeapon, nodeAmmoLink)
 
 	ammo_label.setVisible(bRanged)
 	if nodeAmmoLink then

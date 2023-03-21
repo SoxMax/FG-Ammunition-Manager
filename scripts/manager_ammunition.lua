@@ -10,7 +10,7 @@ local sRuleset
 
 --	luacheck: globals calculateMargin
 function calculateMargin(nDC, nTotal)
-	Debug.console('AmmunitionManager.calculateMargin - DEPRECATED - 2022-07-13 - Use AttackMargins.calculateMargin')
+	Debug.console('AmmunitionManagerSFRPG.calculateMargin - DEPRECATED - 2022-07-13 - Use AttackMargins.calculateMargin')
 	if AttackMargins and AttackMargins.calculateMargin then AttackMargins.calculateMargin(nDC, nTotal) end
 end
 
@@ -162,7 +162,7 @@ end
 
 -- luacheck: globals getWeaponUsage
 function getWeaponUsage(attackNode)
-	local nodeLinkedWeapon = AmmunitionManager.getShortcutNode(attackNode, 'shortcut')
+	local nodeLinkedWeapon = AmmunitionManagerSFRPG.getShortcutNode(attackNode, 'shortcut')
 	if nodeLinkedWeapon then return tonumber(DB.getValue(nodeLinkedWeapon, 'usage', 1)) or 1 end
 	return 1
 end
@@ -172,10 +172,10 @@ function useAmmoStarfinder(rSource, rRoll)
 	local attackNode
 	if rRoll.sAttackNode then attackNode = DB.findNode(rRoll.sAttackNode) end
 	if attackNode and DB.getValue(attackNode, 'type', 0) == 1 then -- ranged attack
-		local ammoNode = AmmunitionManager.getAmmoNode(attackNode)
-		local nAmmoCount, bInfiniteAmmo = AmmunitionManager.getAmmoRemaining(rSource, attackNode, ammoNode)
+		local ammoNode = AmmunitionManagerSFRPG.getAmmoNode(attackNode)
+		local nAmmoCount, bInfiniteAmmo = AmmunitionManagerSFRPG.getAmmoRemaining(rSource, attackNode, ammoNode)
 		if bInfiniteAmmo then return end
-		local weaponUsage = AmmunitionManager.getWeaponUsage(attackNode)
+		local weaponUsage = AmmunitionManagerSFRPG.getWeaponUsage(attackNode)
 		local remainingAmmo = nAmmoCount - weaponUsage
 		DB.setValue(ammoNode, 'count', 'number', remainingAmmo)
 		if remainingAmmo <= 0 then
@@ -194,12 +194,12 @@ local function noDecrementAmmo() end
 local onPostAttackResolve_old
 local function onPostAttackResolve_new(rSource, rTarget, rRoll, rMessage, ...)
 	onPostAttackResolve_old(rSource, rTarget, rRoll, rMessage, ...)
-	AmmunitionManager.ammoTracker(rSource, rRoll)
+	AmmunitionManagerSFRPG.ammoTracker(rSource, rRoll)
 end
 
 local function onPostAttackResolve_starfinder(rSource, rTarget, rRoll, rMessage, ...)
 	onPostAttackResolve_old(rSource, rTarget, rRoll, rMessage, ...)
-	AmmunitionManager.useAmmoStarfinder(rSource, rRoll)
+	AmmunitionManagerSFRPG.useAmmoStarfinder(rSource, rRoll)
 end
 
 function onInit()

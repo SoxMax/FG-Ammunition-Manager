@@ -4,7 +4,7 @@
 -- luacheck: globals onClickRelease
 function onClickRelease()
 	local nodeWeapon = window.getDatabaseNode()
-	local nodeAmmo = AmmunitionManager.getAmmoNode(nodeWeapon)
+	local nodeAmmo = AmmunitionManagerSFRPG.getAmmoNode(nodeWeapon)
 
 	local nMisses = DB.getValue(nodeAmmo, 'missedshots', 0)
 	if nMisses > 0 then

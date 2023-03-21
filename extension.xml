@@ -24,7 +24,7 @@
 		<!-- Strings -->
 		<includefile source="strings/strings_ammunition_manager.xml" />
 		<!-- Scripts -->
-		<script name="AmmunitionManager" file="scripts/manager_ammunition.lua" />
+		<script name="AmmunitionManagerSFRPG" file="scripts/manager_ammunition.lua" />
 		<!-- Buttons -->
 		<icon name="button_load" file="graphics/button_load.png" />
 		<icon name="button_unload" file="graphics/button_unload.png" />

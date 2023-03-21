@@ -9,14 +9,14 @@ function onDataChanged()
 	super.onDamageChanged()
 
 	local nodeWeapon = getDatabaseNode()
-	local nodeWeaponSource = AmmunitionManager.getShortcutNode(nodeWeapon, 'shortcut')
-	local nodeAmmoLink = AmmunitionManager.getAmmoNode(nodeWeapon)
+	local nodeWeaponSource = AmmunitionManagerSFRPG.getShortcutNode(nodeWeapon, 'shortcut')
+	local nodeAmmoLink = AmmunitionManagerSFRPG.getAmmoNode(nodeWeapon)
 	local rActor = ActorManager.resolveActor(DB.getChild(nodeWeapon, '...'))
 
 	--	luacheck: globals type
 	local bRanged = (type.getValue() == 1)
 	local bLinkedAmmoEnabled = (DB.getValue(nodeWeapon, 'ammopicker_enabled', 1) == 1)
-	local _, bInfiniteAmmo = AmmunitionManager.getAmmoRemaining(rActor, nodeWeapon, nodeAmmoLink)
+	local _, bInfiniteAmmo = AmmunitionManagerSFRPG.getAmmoRemaining(rActor, nodeWeapon, nodeAmmoLink)
 	local bDrawnCapacity = (DB.getValue(nodeWeaponSource, 'capacity', ''):lower() == 'drawn')
 	local sSpecial = DB.getValue(nodeWeapon, 'special', ''):lower()
 	local bThrownAttack = (string.find(sSpecial, 'thrown') and bRanged)
@@ -71,7 +71,7 @@ function hasLoadAction(nodeWeapon)
 	--	luacheck: globals type
 	local bRanged = (type.getValue() == 1)
 	local sWeaponName = string.lower(DB.getValue(nodeWeapon, 'name', 'ranged weapon'))
-	for _, v in pairs(AmmunitionManager.tLoadWeapons) do
+	for _, v in pairs(AmmunitionManagerSFRPG.tLoadWeapons) do
 		if string.find(sWeaponName, v) then
 			bHasLoadAction = true
 			break
@@ -101,11 +101,11 @@ end
 local function useWeaponAmmo(rActor, nodeWeapon, attackCount)
 	local sSpecial = DB.getValue(nodeWeapon, 'special', ''):lower()
 	if string.find(sSpecial, 'powered') then return true end
-	local nodeAmmo = AmmunitionManager.getAmmoNode(nodeWeapon)
-	local nAmmoCount, bInfiniteAmmo = AmmunitionManager.getAmmoRemaining(rActor, nodeWeapon, nodeAmmo)
+	local nodeAmmo = AmmunitionManagerSFRPG.getAmmoNode(nodeWeapon)
+	local nAmmoCount, bInfiniteAmmo = AmmunitionManagerSFRPG.getAmmoRemaining(rActor, nodeWeapon, nodeAmmo)
 	if bInfiniteAmmo then return true end
 	if nAmmoCount == 0 then return false end
-	local weaponUsage = AmmunitionManager.getWeaponUsage(nodeWeapon)
+	local weaponUsage = AmmunitionManagerSFRPG.getWeaponUsage(nodeWeapon)
 	if nAmmoCount < weaponUsage * attackCount then
 		return false
 	else
@@ -132,7 +132,7 @@ function generateAttackRolls(rActor, nodeWeapon, rAttack, nAttacksCount)
 		sDesc = sDesc .. ' [WEAPON FOCUS +' .. nFocusBonus .. ']'
 	end
 
-	local nodeWeaponSource = AmmunitionManager.getShortcutNode(nodeWeapon)
+	local nodeWeaponSource = AmmunitionManagerSFRPG.getShortcutNode(nodeWeapon)
 	local sType = (DB.getValue(nodeWeaponSource, 'subtype', ''))
 	local nLevel = (DB.getValue(nodeWeaponSource, 'level', ''))
 	local bTooHeavy = CharManager.isWeaponTooHeavy(ActorManager.getCreatureNode(rActor), sType, nLevel)

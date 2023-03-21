@@ -30,10 +30,10 @@ function onDamageAction(draginfo)
 	rActor.itemPath = sRecord
 	-- end Adanced Effects piece ---
 
-	-- bmos adding ammoPath for AmmunitionManager + Advanced Effects integration
+	-- bmos adding ammoPath for AmmunitionManagerSFRPG + Advanced Effects integration
 	-- add this in the onDamageAction function of other effects to maintain compatibility
-	if AmmunitionManager then
-		local nodeAmmo = AmmunitionManager.getAmmoNode(nodeWeapon, rActor)
+	if AmmunitionManagerSFRPG then
+		local nodeAmmo = AmmunitionManagerSFRPG.getAmmoNode(nodeWeapon, rActor)
 		if nodeAmmo then rActor.ammoPath = DB.getPath(nodeAmmo) end
 	end
 	-- end bmos adding ammoPath
@@ -48,7 +48,7 @@ function onDataChanged(nodeWeapon)
 
 	local bLoading = isLoading(nodeWeapon)
 	isloaded.setVisible(bLoading)
-	local nodeAmmoLink = AmmunitionManager.getAmmoNode(nodeWeapon)
+	local nodeAmmoLink = AmmunitionManagerSFRPG.getAmmoNode(nodeWeapon)
 	ammocounter.setVisible(not nodeAmmoLink)
 	if nodeAmmoLink then
 		maxammo.setLink(DB.getChild(nodeAmmoLink, 'count'), true)
@@ -65,7 +65,7 @@ function onInit()
 				local nodeWeapon = getDatabaseNode()
 				local nodeChar = DB.getChild(nodeWeapon, '...')
 				local rActor = ActorManager.resolveActor(nodeChar)
-				local nAmmo, bInfiniteAmmo = AmmunitionManager.getAmmoRemaining(rActor, nodeWeapon, AmmunitionManager.getAmmoNode(nodeWeapon))
+				local nAmmo, bInfiniteAmmo = AmmunitionManagerSFRPG.getAmmoRemaining(rActor, nodeWeapon, AmmunitionManagerSFRPG.getAmmoNode(nodeWeapon))
 				local messagedata = { text = '', sender = rActor.sName, font = 'emotefont' }
 
 				-- only allow attacks when 'loading' weapons have been loaded

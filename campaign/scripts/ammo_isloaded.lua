@@ -7,7 +7,7 @@ function onClickRelease()
 	local rActor = ActorManager.resolveActor(DB.getChild(getDatabaseNode(), '....'))
 	local nodeWeapon = window.getDatabaseNode()
 
-	local nAmmo, bInfiniteAmmo = AmmunitionManager.getAmmoRemaining(rActor, nodeWeapon, AmmunitionManager.getAmmoNode(nodeWeapon))
+	local nAmmo, bInfiniteAmmo = AmmunitionManagerSFRPG.getAmmoRemaining(rActor, nodeWeapon, AmmunitionManagerSFRPG.getAmmoNode(nodeWeapon))
 
 	if (getValue() == 0) and (bInfiniteAmmo or nAmmo > 0) then
 		local sWeaponName = string.lower(DB.getValue(nodeWeapon, 'name', 'ranged weapon'))
