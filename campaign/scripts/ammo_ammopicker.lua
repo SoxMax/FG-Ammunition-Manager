@@ -6,15 +6,9 @@
 -- luacheck: globals itemsheetaltname itemsheetname
 
 local function isAmmo(nodeItem, sTypeField)
-	local bThrown = false
-	if User.getRulesetName() == '5E' then bThrown = DB.getValue(getDatabaseNode(), '..type', 0) == 2 end
 	if sTypeField and DB.getChild(nodeItem, sTypeField) then
 		local sItemType = DB.getValue(nodeItem, sTypeField, ''):lower()
-		if bThrown then
-			return (sItemType:match('weapon') ~= nil)
-		else
-			return (sItemType:match('ammunition') ~= nil) or (sItemType:match('ammo') ~= nil)
-		end
+		return (sItemType:match('ammunition') ~= nil) or (sItemType:match('ammo') ~= nil)
 	end
 end
 
