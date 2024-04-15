@@ -6,7 +6,6 @@ function onDataChanged()
 	if super and super.onDataChanged then super.onDataChanged() end
 	local nodeWeapon = getDatabaseNode()
 	local bRanged = DB.getValue(nodeWeapon, 'type', 0) == 1
-	if User.getRulesetName() == '5E' then bRanged = bRanged or DB.getValue(nodeWeapon, 'type', 0) == 2 end
 
 	header_ammo.setVisible(bRanged)
 	ammopicker.setComboBoxVisible(bRanged)

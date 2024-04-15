@@ -4,7 +4,6 @@
 
 <root>
 	<windowclass name="charsheet_inv_gear" merge="join">
-		<margins control="0,0,0,2" />
 		<sheetdata>
 			<list_charinv name="inventorylist">
 				<script file="campaign/scripts/sfrpg_inventorylist.lua" />
