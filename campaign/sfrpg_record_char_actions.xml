@@ -133,7 +133,6 @@
 
 			<number_charinv name="count">
 				<bounds>5,2,20,20</bounds>
-				<font>charstarship-sheetnumber</font>
 				<tabtarget next="name" />
 			</number_charinv>
 
