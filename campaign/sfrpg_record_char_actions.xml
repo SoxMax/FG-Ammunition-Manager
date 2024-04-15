@@ -19,8 +19,8 @@
 			</basicnumber>
 			<basicnumber name="current_ammo">
 				<anchored to="label_ammo" position="righthigh" width="30" height="20" />
-				<font>charstarship-sheetnumber</font>
 				<min>0</min>
+				<cursor hover="hand" />
 				<tooltip textres="weapon_tooltip_reloadammo" />
 				<script file="common/scripts/number_crosslink_unlink.lua" />
 				<script>
@@ -41,32 +41,36 @@
 	</windowclass>
 
 	<windowclass name="char_weapon_reload">
-		<frame>recordsheet</frame>
-		<placement>
-			<size width="400" height="350" />
-		</placement>
+		<frame>charsheethelper</frame>
 		<sizelimits>
 			<minimum width="400" height="350" />
 			<dynamic />
 		</sizelimits>
 		<sheetdata>
-			<windowtitlebar name="title">
-				<!-- <resource>weapon_title</resource> -->
-				<field>name</field>
-			</windowtitlebar>
+			<windowtitlebar_charsheethelper name="title">
+				<resource>weapon_title</resource>
+			</windowtitlebar_charsheethelper>
+			<anchor_title_charsheethelper name="contentanchor" />
 			
-			<frame_record_editor name="contentframe" />
+			<genericcontrol name="contentframe">
+				<anchored to="contentanchor">
+					<top anchor="bottom" offset="0" />
+					<left />
+					<right />
+					<bottom parent="" offset="-30" />
+				</anchored>
+			</genericcontrol>
 
 			<subwindow_record name="main">
 				<class>char_weapon_reload_main</class>
 				<activate />
 			</subwindow_record>
-			<!-- <scrollbar_record>
+			<scrollbar_record>
 				<target>main</target>
-			</scrollbar_record> -->
+			</scrollbar_record>
 
-			<resize_recordsheet />
-			<close_recordsheet />
+			<resize_charsheethelper />
+			<close_charsheethelper />
 		</sheetdata>
 	</windowclass>
 
@@ -181,17 +185,6 @@
 				<tabtarget next="location" prev="name" />
 			</string_charinvname>
 		</sheetdata>
-	</windowclass>
-	
-	<windowclass name="char_weapon_editor" merge="join">
-		<frame>recordsheet</frame>
-		<placement>
-			<size width="400" height="388" />
-		</placement>
-		<sizelimits>
-			<minimum width="400" height="388" />
-			<dynamic />
-		</sizelimits>
 	</windowclass>
 
 	<windowclass name="char_weapon_editor_main" merge="join">
