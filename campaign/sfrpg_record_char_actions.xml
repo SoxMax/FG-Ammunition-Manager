@@ -40,6 +40,27 @@
 		</sheetdata>
 	</windowclass>
 
+	<windowclass name="char_weapon_editor_main" merge="join">
+		<sheetdata>
+			<!-- Ammo -->
+			<header_column name="header_ammo">
+				<insertbefore>header_damage</insertbefore>
+				<static textres="weapon_header_ammo" />
+				<center />
+			</header_column>
+			<label_column name="label_ammopicker_enabled">
+				<static textres="char_label_weapon_ammopicker_enabled" />
+			</label_column>
+			<button_checkbox name="ammopicker_enabled">
+				<anchored width="20" height="20">
+					<top parent="label_ammopicker_enabled"  />
+					<left parent="label_ammopicker_enabled" anchor="right" relation="relative" offset="5" />
+				</anchored>
+				<default>1</default>
+			</button_checkbox>
+		</sheetdata>
+	</windowclass>
+
 	<windowclass name="char_weapon_reload">
 		<frame>charsheethelper</frame>
 		<sizelimits>
@@ -65,9 +86,9 @@
 				<class>char_weapon_reload_main</class>
 				<activate />
 			</subwindow_record>
-			<scrollbar_record>
+			<!-- <scrollbar_record>
 				<target>main</target>
-			</scrollbar_record>
+			</scrollbar_record> -->
 
 			<resize_charsheethelper />
 			<close_charsheethelper />
@@ -183,27 +204,6 @@
 				<invisible />
 				<tabtarget next="location" prev="name" />
 			</string_charinvname>
-		</sheetdata>
-	</windowclass>
-
-	<windowclass name="char_weapon_editor_main" merge="join">
-		<sheetdata>
-			<!-- Ammo -->
-			<header_column name="header_ammo">
-				<insertbefore>header_damage</insertbefore>
-				<static textres="weapon_header_ammo" />
-				<center />
-			</header_column>
-			<label_column name="label_ammopicker_enabled">
-				<static textres="char_label_weapon_ammopicker_enabled" />
-			</label_column>
-			<button_checkbox name="ammopicker_enabled">
-				<anchored width="20" height="20">
-					<top parent="label_ammopicker_enabled"  />
-					<left parent="label_ammopicker_enabled" anchor="right" relation="relative" offset="5" />
-				</anchored>
-				<default>1</default>
-			</button_checkbox>
 		</sheetdata>
 	</windowclass>
 </root>
