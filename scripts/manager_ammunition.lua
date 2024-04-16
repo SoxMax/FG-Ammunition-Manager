@@ -12,9 +12,11 @@ end
 -- luacheck: globals parseWeaponCapacity
 function parseWeaponCapacity(capacity)
 	capacity = capacity:lower()
-	if capacity == 'drawn' then return 0, capacity end
+	if capacity == 'drawn' then
+		return 0, capacity
+	end
 	local splitCapacity = StringManager.splitWords(capacity)
-	return tonumber(splitCapacity[1]), splitCapacity[2]
+	return tonumber(splitCapacity[1]) or 20, splitCapacity[2] or 'charges'
 end
 
 ---	This function finds the correct node for a weapon's ammunition.
