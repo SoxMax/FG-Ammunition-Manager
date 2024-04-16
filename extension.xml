@@ -5,7 +5,7 @@
 <root version='3.3' release='3'>
 	<properties>
 		<name>Feature: Starfinder Ammunition Manager</name>
-		<version>3.15.0</version>
+		<version>3.15.1</version>
 		<author>bmos (Wil Thieme) and SoxMax</author>
 		<description>This extension aids in tracking ammunition and loading weapons.</description>
 		<ruleset>
@@ -14,7 +14,7 @@
 		<loadorder>34</loadorder>
 	</properties>
 
-	<announcement text="https://forge.fantasygrounds.com/shop/items/1128/view \n Ammunition Manager v3.15.0 \n This extension aids in tracking ammunition and whether ranged weapons are loaded." font="emotefont" icon="archery_ammomanager" />
+	<announcement text="https://forge.fantasygrounds.com/shop/items/1128/view \n Ammunition Manager v3.15.1 \n This extension aids in tracking ammunition and whether ranged weapons are loaded." font="emotefont" icon="archery_ammomanager" />
 
 	<base>
 		<!-- Campaign Records -->
